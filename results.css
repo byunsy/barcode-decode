@@ -1,0 +1,265 @@
+/* ============================================================================
+FOR ALL 
+============================================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ============================================================================
+CUSTOM PROPERTIES
+============================================================================ */
+:root {
+  --ff-primary: "Roboto", sans-serif;
+
+  --fw-reg: 400;
+  --fw-bold: 900;
+
+  --clr-light: #fff;
+  --clr-dark: #303030;
+  --clr-accent: #16e0bd;
+
+  --fs-h1: 3rem;
+  --fs-h2: 1.5rem;
+
+  --bs: 0.25em 0.25em 0.75em rgba(0, 0, 0, 0.25),
+    0.125em 0.125em 0.25em rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================================================
+GENERAL STYLES 
+============================================================================ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--clr-light);
+  color: var(--clr-dark);
+  margin: 0;
+  font-family: var(--ff-primary);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+}
+
+section {
+  padding: 2.5em 5em;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+strong {
+  font-weight: var(--fw-bold);
+}
+
+:focus {
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 2px;
+}
+
+.section_title {
+  text-align: center;
+  background: #b5ead7;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: transform 200ms ease-in-out, 250ms;
+}
+
+a:hover {
+  color: lightgray;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+}
+h2 {
+  font-size: var(--fs-h2);
+}
+
+/* ============================================================================
+TITLE SECTION 
+============================================================================ */
+.title_section {
+  position: relative;
+  text-align: center;
+}
+
+/* ============================================================================
+RESULTS SECTION 
+============================================================================ */
+.results-list {
+  padding: 5em 0em 2em;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.results-list h3 {
+  margin-top: 1em;
+}
+.results-list li {
+  list-style: none;
+}
+.results-list ul {
+  padding: 0;
+}
+.results-list img {
+  margin: 0 auto;
+}
+
+@media (max-width: 679px) {
+  .results-list {
+    max-width: 350px;
+    padding: 3em 0 2em;
+  }
+  .results-list h2 {
+    text-align: center;
+  }
+}
+
+@media (min-width: 680px) {
+  .results-list {
+    display: grid;
+    grid-template-columns: 200px auto;
+    grid-template-areas:
+      "img1 text1"
+      "img2 text2"
+      "img3 text3"
+      "img4 text4"
+      "img5 text5"
+      "img6 text6"
+      "img7 text7"
+      "img8 text8"
+      "img9 text9"
+      "img10 text10";
+    grid-column-gap: 2em;
+    grid-row-gap: 3em;
+  }
+
+  /* EDUCATION 1*/
+  .item1 {
+    grid-area: img1;
+    background-color: var(--clr-light);
+    max-width: 200px;
+    overflow: hidden;
+  }
+  .text1 {
+    grid-area: text1;
+    margin-top: 0;
+  }
+
+  /* EDUCATION 2*/
+  .item2 {
+    grid-area: img2;
+    background-color: var(--clr-light);
+    max-width: 200px;
+    overflow: hidden;
+  }
+  .text2 {
+    grid-area: text2;
+    margin-top: 0;
+  }
+
+  /* EDUCATION 3*/
+  .item3 {
+    grid-area: img3;
+    background-color: var(--clr-light);
+    max-width: 200px;
+    overflow: hidden;
+  }
+  .text3 {
+    grid-area: text3;
+    margin-top: 0;
+  }
+
+  /* EDUCATION 4*/
+  .item4 {
+    grid-area: img4;
+    background-color: var(--clr-light);
+    max-width: 200px;
+    overflow: hidden;
+  }
+  .text4 {
+    grid-area: text4;
+    margin-top: 0;
+  }
+
+  /* EDUCATION 5*/
+  .item5 {
+    grid-area: img5;
+    background-color: var(--clr-light);
+    max-width: 200px;
+    overflow: hidden;
+  }
+  .text5 {
+    grid-area: text5;
+    margin-top: 0;
+  }
+
+  /* EDUCATION 6*/
+  .item6 {
+    grid-area: img6;
+    background-color: var(--clr-light);
+    max-width: 200px;
+    overflow: hidden;
+  }
+  .text6 {
+    grid-area: text6;
+    margin-top: 0;
+  }
+
+  /* EDUCATION 7*/
+  .item7 {
+    grid-area: img7;
+    background-color: var(--clr-light);
+    max-width: 200px;
+    overflow: hidden;
+  }
+  .text7 {
+    grid-area: text7;
+    margin-top: 0;
+  }
+
+  /* EDUCATION 8*/
+  .item8 {
+    grid-area: img8;
+    background-color: var(--clr-light);
+    max-width: 200px;
+    overflow: hidden;
+  }
+  .text8 {
+    grid-area: text8;
+    margin-top: 0;
+  }
+
+  /* EDUCATION 9*/
+  .item9 {
+    grid-area: img9;
+    background-color: var(--clr-light);
+    max-width: 200px;
+    overflow: hidden;
+  }
+  .text9 {
+    grid-area: text9;
+    margin-top: 0;
+  }
+
+  /* EDUCATION 10*/
+  .item10 {
+    grid-area: img10;
+    background-color: var(--clr-light);
+    max-width: 200px;
+    overflow: hidden;
+  }
+  .text10 {
+    grid-area: text10;
+    margin-top: 0;
+  }
+}
