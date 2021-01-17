@@ -74,6 +74,15 @@ def refine_keyword(product):
             if p in product:
                 product = product.replace(p, "")
 
+    # if any unnecessary parenthesis
+    if any(p in product for p in paren):
+        for p in paren:
+            if p in product:
+                cutoff.append(product.index(p))
+        
+        # only until the first occurrence of a parenthesis
+        product = product[:min(cutoff)]
+
     # if any unnecessary english words
     split_words = product.split(" ")
     to_remove = []
@@ -90,15 +99,6 @@ def refine_keyword(product):
         split_words.remove(i)
         
     product = " ".join(split_words)
-
-    # if any unnecessary parenthesis
-    if any(p in product for p in paren):
-        for p in paren:
-            if p in product:
-                cutoff.append(product.index(p))
-        
-        # only until the first occurrence of a parenthesis
-        return product[:min(cutoff)]
 
     return product
 
