@@ -11,6 +11,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as excn
 from selenium.webdriver.common.by import By
+import time
 
 # Header information
 headers = {
@@ -63,9 +64,34 @@ PRODUCES:
 =========================================================================== """
 def refine_keyword(product):
     
+    punct = [",", ".", ";", "/", ":"]
     paren = ["[", "(", "{", "_"]
     cutoff = []
 
+    # if any unnecessary punctuations
+    if any(p in product for p in punct):
+        for p in punct:
+            if p in product:
+                product = product.replace(p, "")
+
+    # if any unnecessary english words
+    split_words = product.split(" ")
+    to_remove = []
+
+    for word in split_words:
+        if word == "":
+            to_remove.append(word)
+
+        reg = re.compile('.*[a-zA-Z].*')
+        if reg.match(word):
+            to_remove.append(word)
+
+    for i in to_remove:
+        split_words.remove(i)
+        
+    product = " ".join(split_words)
+
+    # if any unnecessary parenthesis
     if any(p in product for p in paren):
         for p in paren:
             if p in product:
@@ -105,13 +131,39 @@ def search_coupang(product):
     # Check how many checks if there were any hits
     hits = soup.find("p", class_="hit-count")
     if hits:
-        hits = int(hits.find_all("strong")[1].get_text())
+        hits = int(hits.find_all("strong")[1].get_text().replace(",", ""))
 
     # If there are not enough (related) hits on our first try, 
     # then we wait for Coupang to load related items list.
     # - can be done using selenium (it will take some extra time)
-    if hits is None or hits >= 20:
-        product_list = soup.find("ul", id="productList")
+    if hits is None or hits >= 5:
+
+        # Set pathname for chromedriver executable
+        chrome_driver = "C:/Users/SangYoon Byun/chromedriver"
+
+        # Set chrome webdriver
+        driver = webdriver.Chrome(chrome_driver)
+        driver.maximize_window()
+
+        # Access the given url
+        driver.get(url)
+
+        # Scroll down to load more item information
+        driver.execute_script("window.scrollTo(0, 1080)")
+        time.sleep(1)
+
+        # Make a new soup with Selenium
+        src = driver.page_source
+        soup = BeautifulSoup(src, features="html.parser")
+
+        # Close
+        driver.close()
+
+        if hits < 10:
+            product_list = soup.find("div", class_="search-content")
+
+        else:
+            product_list = soup.find("ul", id="productList")
 
     else:
         # Set pathname for chromedriver executable
@@ -157,7 +209,10 @@ def search_coupang(product):
         if rating:
             rating = rating.get_text()
 
-        item_result = (name, img_link, price, rating)
+        # Find product shopping link
+        item_link = "https://coupang.com/" + item.find("a")['href']
+
+        item_result = (name, img_link, price, rating, item_link)
         results.append(item_result)
 
     return results
@@ -165,19 +220,19 @@ def search_coupang(product):
 """============================================================================
                                      MAIN
 ============================================================================"""
-def main():
+# def main():
 
-    # product = get_product(8801619044704)
-    # product = get_product(8801260210473)
-    # product = get_product(8809233836910)
-    # product = get_product(8804224218584)
-    product = get_product(8802203531235)
+#     # product = get_product(8801619044704)
+#     # product = get_product(8801260210473)
+#     # product = get_product(8809233836910)
+#     # product = get_product(8804224218584)
+#     # product = get_product(8802203531235)
 
-    refined = refine_keyword(product)
-    print(refined)
+#     refined = refine_keyword(product)
+#     print(refined)
 
-    results = search_coupang(refined)
-    print(results)
+#     results = search_coupang(refined)
+#     print(results)
 
-if __name__ == '__main__':
-    main()    
+# if __name__ == '__main__':
+#     main()    

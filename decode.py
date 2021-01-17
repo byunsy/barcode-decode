@@ -112,40 +112,40 @@ def decode(img):
 """============================================================================
                                      MAIN
 ============================================================================"""
-def main():
+# def main():
 
-    # Initialize and open default camera
-    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+#     # Initialize and open default camera
+#     cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
-    # Check for any errors opening the camera
-    if not cap.isOpened():
-        print("Error: Failed to open camera.")
-        sys.exit()
+#     # Check for any errors opening the camera
+#     if not cap.isOpened():
+#         print("Error: Failed to open camera.")
+#         sys.exit()
 
-    # Keep running until barcode is detected
-    while True:
+#     # Keep running until barcode is detected
+#     while True:
 
-        ret, frame = cap.read()
-        if not ret:
-            break
+#         ret, frame = cap.read()
+#         if not ret:
+#             break
 
-        frame = draw_guide(frame)
+#         frame = draw_guide(frame)
 
-        # decode barcode if it exists
-        barcode_num = decode(frame)
+#         # decode barcode if it exists
+#         barcode_num = decode(frame)
 
-        # if successfully decoded
-        if barcode_num:
-            print(barcode_num)
-            break
+#         # if successfully decoded
+#         if barcode_num:
+#             print(barcode_num)
+#             break
 
-        # exit if pressed ESC
-        if cv2.waitKey(1) == 27:
-            break
+#         # exit if pressed ESC
+#         if cv2.waitKey(1) == 27:
+#             break
 
-    cap.release()
-    cv2.destroyAllWindows()
+#     cap.release()
+#     cv2.destroyAllWindows()
 
 
-if __name__ == '__main__':
-    main()    
+# if __name__ == '__main__':
+#     main()    
