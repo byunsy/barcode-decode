@@ -63,3 +63,5 @@ script.bat
 The program can accurately detect a barcode, decode it, and search similar products online.
 
 ![](images/barcode1.gif)
+
+![](images/barcode2.gif)
